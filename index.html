@@ -5,6 +5,7 @@
   <title>OLT Мониторинг</title>
   <style>
     body {
+
       font-family: Arial, sans-serif;
       margin: 0;
       min-height: 100vh;
@@ -116,7 +117,26 @@
   pointer-events: none;
 }
 
-body {
+body 
+<div id="authOverlay" style="
+  position: fixed;
+  z-index: 9999;
+  background: #000d;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+">
+  <div style="background:#333; padding: 30px; border-radius: 10px; color: white;">
+    <h2>Авторизация</h2>
+    <input type="text" id="login" placeholder="Логин" style="margin: 10px 0; padding: 10px; width: 100%;" />
+    <input type="password" id="password" placeholder="Пароль" style="margin: 10px 0; padding: 10px; width: 100%;" />
+    <button onclick="checkLogin()" style="padding: 10px; width: 100%;">Войти</button>
+  </div>
+</div>
+  {
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -167,14 +187,14 @@ body {
   </div>
 
 
-  <div class="grid" id="oltGrid">
-    <a class="card" href="http://91.246.93.78:2891" target="_blank">Abay-Kemekalgan</a>
-    <a class="card" href="http://91.185.17.212:2891" target="_blank">Belavod-Ayteke</a>
-    <a class="card" href="http://178.22.173.34:2891" target="_blank">Balykshy-1</a>
-    <a class="card" href="http://178.22.173.34:2892" target="_blank">Balykshy-2</a>
-    <a class="card" href="http://178.22.173.43:2891" target="_blank">Balykshy-Abay</a>
-    <a class="card" href="http://91.185.27.85:2891" target="_blank">Eltai-Server</a>
-    <a class="card" href="http://46.36.144.34:2891" target="_blank">Alma-VPN</a>
+  	<div class="grid" id="oltGrid">
+    	<a class="card" href="http://91.246.93.78:2891" target="_blank">Abay-Kemekalgan</a>
+    	<a class="card" href="http://91.185.17.212:2891" target="_blank">Belavod-Ayteke</a>
+    	<a class="card" href="http://178.22.173.34:2891" target="_blank">Balykshy-1</a>
+    	<a class="card" href="http://178.22.173.34:2892" target="_blank">Balykshy-2</a>
+    	<a class="card" href="http://178.22.173.43:2891" target="_blank">Balykshy-Abay</a>
+    	<a class="card" href="http://91.185.27.85:2891" target="_blank">Eltai-Server</a>
+    	<a class="card" href="http://46.36.144.34:2891" target="_blank">Alma-VPN</a>
 	<a class="card" href="http://91.246.93.227:2889" target="_blank">Keremet-Server</a>
 	<a class="card" href="http://91.246.93.227:2899" target="_blank">Azia-Server</a>
 	<a class="card" href="http://185.103.168.90:2891" target="_blank">DVD-VPN</a>
@@ -234,7 +254,17 @@ body {
 	
 	
 <script>
-  function toggleSettings() {
+	function checkLogin() {
+  	const login = document.getElementById("login").value;
+  	const password = document.getElementById("password").value;
+
+  	if (login === "admin" && password === "1234") {
+    	document.getElementById("authOverlay").style.display = "none";
+  	} else {
+    	alert("Неверный логин или пароль");
+ 	}
+	}
+function toggleSettings() {
     const panel = document.getElementById("settingsPanel");
     const settingsBtn = document.getElementById("settingsBtn");
     const backBtn = document.getElementById("backBtn");
