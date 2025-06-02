@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>OLT Мониторинг</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: url('https://hub.ldpr.ru/media/images/amur/ff4eb74146fc291864aab6cb357c2e5ba12c9e29c7a296a74ff595a373f2fa60.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 40px;
+      color: #fff;
+    }
+
+    .settings-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .settings-panel {
+      display: none;
+      text-align: right;
+      margin: 20px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #5d9cec;
+      color: white;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #4a89dc;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .card {
+      background-color: #b0f4a3;
+      padding: 40px 20px;
+      border-radius: 15px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      text-decoration: none;
+      color: #000;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .settings-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.settings-panel {
+  display: none;
+  margin: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.color-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.color-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+
+}
+
+}
+  
+	
+    }
+  </style>
+</head>
+<body>
+
+<div class="settings-button">
+  <button class="button" id="settingsBtn" onclick="toggleSettings()">Настройка</button>
+  <button class="button" id="backBtn" onclick="toggleSettings()" style="display: none;">Назад</button>
+</div>
+
+<div class="settings-panel" id="settingsPanel">
+  <div class="color-section">
+    <button class="button" onclick="applyColor()">Использовать</button>
+    <label class="color-label">
+      Выберите цвет:
+      <input class="color-input" type="color" id="colorPicker" value="#b0f4a3" />
+    </label>
+  </div>
+</div>
+
+
+
+
+
+	<video autoplay muted loop id="bgVideo">
+	<source src="https://videos.pexels.com/video-files/1851190/1851190-uhd_2560_1440_25fps.mp4" type="video/webm">
+	Ваш браузер не поддерживает видео фон.
+	</video>
+
+
+
+  <h1>OLT Мониторинг</h1>
+
+  <div style="text-align: center; margin-top: 20px;">
+     <input type="text" id="searchInput" placeholder="Поиск..." style="padding: 10px; width: 50%; font-size: 16px; border-radius: 8px; border: none;">
+  </div>
+
+
+  <div class="grid" id="oltGrid">
+    <a class="card" href="http://91.246.93.78:2891" target="_blank">Abay-Kemekalgan</a>
+    <a class="card" href="http://91.185.17.212:2891" target="_blank">Belavod-Ayteke</a>
+    <a class="card" href="http://178.22.173.34:2891" target="_blank">Balykshy-1</a>
+    <a class="card" href="http://178.22.173.34:2892" target="_blank">Balykshy-2</a>
+    <a class="card" href="http://178.22.173.43:2891" target="_blank">Balykshy-Abay</a>
+    <a class="card" href="http://91.185.27.85:2891" target="_blank">Eltai-Server</a>
+    <a class="card" href="http://46.36.144.34:2891" target="_blank">Alma-VPN</a>
+	<a class="card" href="http://91.246.93.227:2889" target="_blank">Keremet-Server</a>
+	<a class="card" href="http://91.246.93.227:2899" target="_blank">Azia-Server</a>
+	<a class="card" href="http://185.103.168.90:2891" target="_blank">DVD-VPN</a>
+	<a class="card" href="http://176.98.234.221:2891" target="_blank">Kyzylsai-Office</a>
+	<a class="card" href="http://46.36.144.34:2899" target="_blank">Respublika-12A</a>
+	<a class="card" href="http://91.246.93.246:2891" target="_blank">Sarybay-Zhien</a>
+	<a class="card" href="http://91.246.101.130:2891" target="_blank">Sayram-Koledg-1</a>
+	<a class="card" href="http://91.246.101.134:2891" target="_blank">Sayram-Sheltor</a>
+	<a class="card" href="http://176.98.234.200:2891" target="_blank">TTC-Kabanbai-3</a>
+	<a class="card" href="http://185.103.168.72:2891" target="_blank">5-Poliklinika</a>
+	<a class="card" href="http://178.22.175.109:2891" target="_blank">51-Shkola</a>
+	<a class="card" href="http://176.98.234.221:2891" target="_blank">110-Shkola</a>
+	<a class="card" href="http://178.22.175.106:2891" target="_blank">128-Shkola</a>
+	<a class="card" href="http://91.246.93.248:2891" target="_blank">133-Daur-Server</a>
+	<a class="card" href="http://91.246.93.78:2891" target="_blank">Abay-Shkola-VPN</a>
+	<a class="card" href="http://91.246.89.82:2891" target="_blank">Akjar-Server</a>
+	<a class="card" href="http://91.246.101.141:2891" target="_blank">Alash-Shkola-Server</a>
+	<a class="card" href="http://91.246.86.170:2891" target="_blank">Arys-Server</a>
+	<a class="card" href="http://91.185.17.212:2891" target="_blank">Belavod-VPN</a>
+	<a class="card" href="http://91.246.93.80:2891" target="_blank">Kaskasu-Server</a>
+	<a class="card" href="http://91.246.101.136:2891" target="_blank">Koksayek-Server</a>
+	<a class="card" href="http://185.103.168.68:4004" target="_blank">Sever-Vyshka</a>
+	<a class="card" href="http://185.102.119.138:2891" target="_blank">Taraz-Alma-Office</a>
+	<a class="card" href="http://91.246.93.253:2891" target="_blank">Tulpar-Server</a>
+	<a class="card" href="http://91.246.93.82:2891" target="_blank">Ekpyndy-Kosagash</a>
+	<a class="card" href="http://178.22.175.106:2892" target="_blank">81-Shkola</a>
+	<a class="card" href="http://91.246.93.70:2891" target="_blank">Zhanazhol-Server</a>
+	<a class="card" href="http://91.185.17.211:2891" target="_blank">Belavod-Aynabulak</a>
+	<a class="card" href="http://188.127.43.42:2891" target="_blank">Sholakorgan-Server</a>
+	<a class="card" href="http://176.98.234.222:2891" target="_blank">27-Shkola</a>
+	<a class="card" href="http://91.246.101.133:2891" target="_blank">111-Shkola</a>
+	<a class="card" href="http://91.246.93.253:2892" target="_blank">Zerek-Shkola</a>
+	<a class="card" href="http://91.246.101.130:2892" target="_blank">Sayram-Koledg-2</a>
+	<a class="card" href="http://176.98.234.205:2891" target="_blank">Alma-Office-1</a>
+	<a class="card" href="http://176.98.234.205:2892" target="_blank">Alma-Office-2</a>
+	<a class="card" href="http://176.98.234.210:2893" target="_blank">Pesh-Otemis</a>
+	<a class="card" href="http://185.103.168.76:2891" target="_blank">Argynbekova-12</a>
+	<a class="card" href="http://185.103.168.71:2891" target="_blank">3-Poliklinika</a>
+	<a class="card" href="http://176.98.234.210:2892" target="_blank">Vostok-108A</a>
+	<a class="card" href="http://188.95.95.51:2891" target="_blank">Temirlan-KZ-Gaz</a>
+	<a class="card" href="http://91.246.93.82:2892" target="_blank">Birkolik</a>
+	<a class="card" href="http://91.185.27.82:2891" target="_blank">Shakpak</a>
+	<a class="card" href="http://91.246.101.135:2892" target="_blank">112-Shkola</a>
+	<a class="card" href="http://91.246.101.130:2893" target="_blank">Abdulabad</a>
+	<a class="card" href="http://176.98.234.198:2891" target="_blank">Zhuldyz-OLT</a>
+	<a class="card" href="http://176.98.234.198:2892" target="_blank">34-Shkola</a>
+	<a class="card" href="http://178.22.175.98:2893" target="_blank">Kazygurt-Server</a>
+	<a class="card" href="http://176.98.234.200:2892" target="_blank">Voennaya-Shkola</a>
+	<a class="card" href="http://91.246.90.109:2891" target="_blank">Kershetas-Server</a>
+	<a class="card" href="http://176.98.234.198:2893" target="_blank">7-Poliklinika</a>
+	<a class="card" href="http://91.246.93.227:2891" target="_blank">Azia-BC</a>
+	
+	
+	
+	
+	
+	
+	
+<script>
+  function toggleSettings() {
+    const panel = document.getElementById("settingsPanel");
+    const settingsBtn = document.getElementById("settingsBtn");
+    const backBtn = document.getElementById("backBtn");
+
+    const isPanelVisible = panel.style.display === "block";
+
+    panel.style.display = isPanelVisible ? "none" : "block";
+    settingsBtn.style.display = isPanelVisible ? "inline-block" : "none";
+    backBtn.style.display = isPanelVisible ? "none" : "inline-block";
+  }
+
+  function applyColor() {
+    const color = document.getElementById("colorPicker").value;
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+      card.style.backgroundColor = color;
+    });
+    localStorage.setItem("cardColor", color); // сохраняем
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("settingsPanel").style.display = "none";
+
+    // восстановить сохранённый цвет
+    const savedColor = localStorage.getItem("cardColor");
+    if (savedColor) {
+      document.getElementById("colorPicker").value = savedColor;
+      document.querySelectorAll(".card").forEach(card => {
+        card.style.backgroundColor = savedColor;
+      });
+    }
+
+    // поиск
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const filter = this.value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(filter) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
