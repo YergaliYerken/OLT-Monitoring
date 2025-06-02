@@ -198,6 +198,21 @@ body
 
 
 
+<div class="settings-button">
+  <button class="button" id="settingsBtn" onclick="toggleSettings()">Настройка</button>
+  <button class="button" id="backBtn" onclick="toggleSettings()" style="display: none;">Назад</button>
+</div>
+
+<div class="settings-panel" id="settingsPanel">
+  <div class="color-section">
+    <button class="button" onclick="applyColor()">Использовать</button>
+    <label class="color-label">
+      Выберите цвет:
+      <input class="color-input" type="color" id="colorPicker" value="#b0f4a3" />
+    </label>
+  </div>
+</div>
+
 
 
 	<video autoplay muted loop id="bgVideo">
@@ -286,7 +301,7 @@ body
   	const login = document.getElementById("login").value;
   	const password = document.getElementById("password").value;
 
-  	if (login === "Yerken" && password === "1597532486") {
+  	if (login === "Erken" && password === "14102006") {
     	document.getElementById("authOverlay").style.display = "none";
   	} else {
     	alert("Неверный логин или пароль");
