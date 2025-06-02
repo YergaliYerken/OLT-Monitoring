@@ -141,36 +141,60 @@ body
 <div id="authOverlay" style="
   position: fixed;
   z-index: 9999;
-  background: #000d;
+  background: rgba(0, 0, 0, 0.85);
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(8px);
+  font-family: 'Segoe UI', sans-serif;
 ">
-  <div style="background:#333; padding: 30px; border-radius: 10px; color: white;">
-    <h2>Авторизация</h2>
-    <input type="text" id="login" placeholder="Логин" style="margin: 10px 0; padding: 10px; width: 100%;" />
-    <input type="password" id="password" placeholder="Пароль" style="margin: 10px 0; padding: 10px; width: 100%;" />
-    <button onclick="checkLogin()" style="padding: 10px; width: 100%;">Войти</button>
+  <div style="
+    background: #1e1e1e;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  ">
+    <h2 style="color: #ffffff; margin-bottom: 24px;">🔒 <b>Авторизация</b></h2>
+    <input type="text" id="login" placeholder="Логин" style="
+      margin-bottom: 14px;
+      padding: 12px;
+      width: 100%;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #2b2b2b;
+      color: white;
+      font-size: 16px;
+    ">
+    <input type="password" id="password" placeholder="Пароль" style="
+      margin-bottom: 20px;
+      padding: 12px;
+      width: 100%;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #2b2b2b;
+      color: white;
+      font-size: 16px;
+    ">
+    <button onclick="checkLogin()" style="
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background-color: #4a90e2;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    " onmouseover="this.style.backgroundColor='#357ab8'" onmouseout="this.style.backgroundColor='#4a90e2'">Войти</button>
   </div>
 </div>
 
-<div class="settings-button">
-  <button class="button" id="settingsBtn" onclick="toggleSettings()">Настройка</button>
-  <button class="button" id="backBtn" onclick="toggleSettings()" style="display: none;">Назад</button>
-</div>
-
-<div class="settings-panel" id="settingsPanel">
-  <div class="color-section">
-    <button class="button" onclick="applyColor()">Использовать</button>
-    <label class="color-label">
-      Выберите цвет:
-      <input class="color-input" type="color" id="colorPicker" value="#b0f4a3" />
-    </label>
-  </div>
-</div>
 
 
 
